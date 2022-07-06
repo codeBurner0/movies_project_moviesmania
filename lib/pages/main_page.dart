@@ -1,5 +1,5 @@
 //@dart=2.9
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
 import 'dart:ui';
 // Packages
 
