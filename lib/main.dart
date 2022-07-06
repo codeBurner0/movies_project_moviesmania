@@ -1,27 +1,39 @@
+//Packages
+// @dart=2.9
 import 'package:flutter/material.dart';
+// ignore: deprecated_member_use
+import 'package:flutter_riverpod/all.dart';
+import 'package:riverpod/riverpod.dart';
+//Pages
+import 'pages/Splash_page.dart';
+import 'pages/main_page.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: MyApp(),
-  ));
+  runApp(
+    SplashPage(
+      onInitializationComplete: (() => runApp(
+            ProviderScope(
+              child: MyApp(),
+            ),
+          )),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Center(
-            child: Text(
-          "Never Give Up!",
-          style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 90, 246)),
-        )),
-      ),
+    return MaterialApp(
+      title: 'moviesmania',
+      initialRoute: 'home',
+      routes: {
+        'home': (BuildContext _context) => MainPage(),
+      },
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity),
     );
   }
 }
