@@ -49,6 +49,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "moviesmania",
       theme: ThemeData(primarySwatch: Colors.blue),
       home: Scaffold(
