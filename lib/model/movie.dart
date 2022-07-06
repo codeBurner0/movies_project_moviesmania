@@ -14,7 +14,7 @@ class Movie{
       this.description,this.posterPath,this.backdropPath,
       this.rating,this.releaseDate}
       );
-  factory Movie.from3son(Map<String,dynamic>_json)
+  factory Movie.fromJson(Map<String,dynamic>_json)
   {
     return Movie(
        name:_json['title'],
