@@ -2,12 +2,15 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
 import 'dart:ui';
 // Packages
-
 import'package:flutter/material.dart';
 import'package:flutter_riverpod/flutter_riverpod.dart';
 
+//Widget
+import '../widgets/movie_tile.dart';
+
 //Models
 import'../model/search_category.dart';
+import '../model/movie.dart';
 
 class MainPage extends ConsumerWidget{
  
@@ -73,6 +76,11 @@ Widget _foregroundWidgets(){
       crossAxisAlignment:CrossAxisAlignment.center,
       children:[
        _topBarWidget(),
+       Container(
+        height: _deviceHeight * 0.83,
+        padding: EdgeInsets.symmetric(vertical: _deviceHeight *0.01),
+        child: _moviesListViewWidget(),
+        )
       ]
     ),
   );
@@ -151,8 +159,52 @@ Widget _searchFieldWidget(){
                  ),
                  value: SearchCategory.none,
                ),
-      ]
+        ]
+    );
+  }
+  Widget _moviesListViewWidget(){
+
+    final List <Movie> _movies = [];
+    for(var i=0; i < 20; i++){
+      _movies.add(
+        Movie(
+          name: "Moratl Kombat",
+          language: "EN",
+          isAdult: false,
+          description:
+          "Mortal Kombat is a 2021 martial arts fantasy film based on the video game franchise of the same name and a reboot of the Mortal Kombat film series.",
+          posterPath: "/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg",
+          backdropPath: "/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg" ,
+          rating: 7.8,
+          releaseDate: "2021-04-07",),
       );
- }
+    }
+
+    if(_movies.length != 0){
+      return ListView.builder(
+        itemCount: _movies.length,
+        itemBuilder: (BuildContext _context ,int _count){
+          return Padding(padding: EdgeInsets.symmetric(
+            vertical: _deviceHeight* 0.01,horizontal: 0),
+            child: GestureDetector(
+              onTap:(){},
+              child: MovieTile(
+                movie: _movies[_count],
+                height: _deviceHeight *0.20 ,
+                width: _deviceWidth * 0.85,
+              ),
+            ),
+          );
+        });
+
+    }
+    else{
+      return Center(
+        child: CircularProgressIndicator(
+          backgroundColor: Colors.white,
+        ),
+      );
+    }
+  }
 
 }

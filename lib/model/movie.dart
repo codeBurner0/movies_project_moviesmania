@@ -1,5 +1,10 @@
 //@dart=2.9
+//packages
+import 'package:get_it/get_it.dart';
 
+
+//Models
+import '../model/app_config.dart';
 class Movie{
   final String name;
   final String language;
@@ -26,5 +31,9 @@ class Movie{
        rating:_json['vote_average'],
       releaseDate:_json["release_date"],
     );
+  }
+  String posterURL(){
+    final AppConfig _appConfig = GetIt.instance.get<AppConfig>();
+    return '${_appConfig.BASE_IMAGE_API_URL}${this.posterPath}';
   }
 }
