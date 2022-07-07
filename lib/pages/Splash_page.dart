@@ -59,7 +59,7 @@ class _SplashPageState extends State<SplashPage> {
           ),
 
           // Avoid this thing
-          // I have chamged the splash screen
+          // I have changed the splash screen
           // don't worry , it works as similar as the instuctor screen
           // Container(
           //   height: 200,
