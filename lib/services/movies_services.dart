@@ -1,6 +1,9 @@
 //@dart=2.9
 //Packages
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+
+
+import 'dart:collection';
+import 'dart:html';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -21,9 +24,10 @@ class MovieService {
 
 
   Future<List<Movie>> getPopularMovies({int page}) async{
-    Response _response = await _http.get('/movie/popular', query: {
-      'page': page,'search':
-    });
+    Response _response = await _http.get('/movie/popular',query: {
+      'page':page
+    }
+    );
     
     if(_response.statusCode == 200){
       Map _data =_response.data;
@@ -32,7 +36,7 @@ class MovieService {
       }).toList();
       return _movies;
     }else{
-      throw Exception('');
+      throw Exception('Couldnot load popular movies');
     }
   }
 

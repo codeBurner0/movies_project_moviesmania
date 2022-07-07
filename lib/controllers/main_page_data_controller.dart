@@ -24,7 +24,7 @@ class MainPageDataController extends StateNotifier<MainPageData>{
   Future<void> getMovies() async {
     try{
       List<Movie> _movies =[];
-      _movies = await _movieService.
+      _movies = await _movieService.getPopularMovies(page: state.page);
     } catch(e){
 
     }
