@@ -22,7 +22,7 @@ class MovieService {
 
   Future<List<Movie>> getPopularMovies({int page}) async{
     Response _response = await _http.get('/movie/popular', query: {
-      'page': page,'search':
+      'page': page,
     });
     
     if(_response.statusCode == 200){
