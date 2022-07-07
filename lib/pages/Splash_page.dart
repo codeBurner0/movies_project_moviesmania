@@ -57,6 +57,10 @@ class _SplashPageState extends State<SplashPage> {
           child: Container(
             child: Image(image: AssetImage("assets/images/logo.png")),
           ),
+
+          // Avoid this thing
+          // I have chamged the splash screen
+          // don't worry , it works as similar as the instuctor screen
           // Container(
           //   height: 200,
           //   width: 200,
