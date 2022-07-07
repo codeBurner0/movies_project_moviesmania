@@ -25,6 +25,9 @@ class MainPageDataController extends StateNotifier<MainPageData>{
   Future<void> getMovies() async {
     try{
       List<Movie> _movies =[];
+      _movies = await _movieService.getPopularMovies(page: state.page);
+    } catch(e){
+
 
       if(state.searchText.isEmpty){
         if(state.searchCategory == SearchCategory.popular){

@@ -9,8 +9,10 @@ import '../model/app_config.dart';
 class HTTPService {
   final Dio dio = Dio();
   final GetIt getIt = GetIt.instance;
+
   String _base_url = '';
   String _api_key = '';
+
   HTTPService() {
     AppConfig _config = getIt.get<AppConfig>();
     _base_url = _config.BASE_API_URL;
