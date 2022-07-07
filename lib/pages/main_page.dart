@@ -29,6 +29,7 @@ class MainPage extends ConsumerWidget{
  }
  Widget _buildUI(){
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor:Colors.black,
       body:Container(
         height:_deviceHeight,
@@ -69,10 +70,10 @@ class MainPage extends ConsumerWidget{
 Widget _foregroundWidgets(){
   return Container(
     padding:EdgeInsets.fromLTRB(0,_deviceHeight*0.02,0,0),
-    width:_deviceHeight* 0.88,
+    width:_deviceWidth* 0.88,
     child:Column(
       mainAxisSize:MainAxisSize.max,
-      mainAxisAlignment:MainAxisAlignment.start,
+      mainAxisAlignment:MainAxisAlignment.end,
       crossAxisAlignment:CrossAxisAlignment.center,
       children:[
        _topBarWidget(),
@@ -133,7 +134,7 @@ Widget _searchFieldWidget(){
  Widget _categorySelectionWidget(){
     return DropdownButton(
       dropdownColor: Colors.black38,
-      value:SearchCategory.none,
+      value:SearchCategory.popular,
       icon:Icon(
       Icons.menu,color:Colors.white24,),
       onChanged:(value){},
