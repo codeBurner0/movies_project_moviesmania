@@ -36,7 +36,7 @@ class MovieService {
       }).toList();
       return _movies;
     }else{
-      throw Exception('Couldnot load popular movies');
+      throw Exception('Couldnot load');
     }
   }
 
