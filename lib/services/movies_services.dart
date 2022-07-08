@@ -1,9 +1,7 @@
 //@dart=2.9
 //Packages
 
-
 import 'dart:collection';
-import 'dart:html';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -22,25 +20,18 @@ class MovieService {
     _http = getIt.get<HTTPService>();
   }
 
+  Future<List<Movie>> getPopularMovies({int page}) async {
+    Response _response =
+        await _http.get('/movie/popular', query: {'page': page});
 
-  Future<List<Movie>> getPopularMovies({int page}) async{
-    Response _response = await _http.get('/movie/popular',query: {
-      'page':page
-    }
-    );
-    
-    if(_response.statusCode == 200){
-      Map _data =_response.data;
-      List<Movie> _movies = _data['results'].map<Movie>((_movieData)  {
+    if (_response.statusCode == 200) {
+      Map _data = _response.data;
+      List<Movie> _movies = _data['results'].map<Movie>((_movieData) {
         return Movie.fromJson(_movieData);
       }).toList();
       return _movies;
-    }else{
+    } else {
       throw Exception('Could not load popular movies');
     }
   }
-
-
-
-
 }
