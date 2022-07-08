@@ -58,10 +58,19 @@ class _SplashPageState extends State<SplashPage> {
       home: Scaffold(
         body: Center(
           child: Container(
-            child: Image(
-              image: AssetImage("assets/images/unnamed.png"),
-              height: 200,
+            decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: DecorationImage(
+              image: AssetImage("assets/images/exodus.gif"),
+              fit: BoxFit.cover,
             ),
+          ),
+            // child: Image(
+            //   image:DecorationImage()
+            // //  image: AssetImage("assets/images/unnamed.png"),
+            // image: NetworkImage('https://i.pinimg.com/originals/43/3d/83/433d83f7e481f35245f8c6bb7c7591d8.gif',),
+            //   height: 500,
+            // ),
           ),
 
           // Avoid this thing
