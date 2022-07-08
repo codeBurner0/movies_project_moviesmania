@@ -19,9 +19,16 @@ final mainPageDataControllerProvider =
   return MainPageDataController();
 });
 
+final selectedMoviePosterURLProvider =StateProvider<String> ((ref){ 
+  final _movies =  ref.watch(mainPageDataControllerProvider.state).movies;
+  return _movies.length !=0 ? _movies[0].posterURL() : null;
+});
+
 class MainPage extends ConsumerWidget {
   double _deviceHeight;
-  double _deviceWidth;
+  double _deviceWidth; 
+
+  var _selectedMoviePosterURL;  
 
   MainPageDataController _mainPageDataController;
   MainPageData _mainPageData;
@@ -35,8 +42,10 @@ class MainPage extends ConsumerWidget {
 
     _mainPageDataController = watch(mainPageDataControllerProvider);
     _mainPageData = watch(mainPageDataControllerProvider.state);
+    _selectedMoviePosterURL = watch(selectedMoviePosterURLProvider);
 
     _searchTextFieldController = TextEditingController();
+    _searchTextFieldController.text = _mainPageData.searchText;
 
     return _buildUI();
   }
@@ -59,14 +68,14 @@ class MainPage extends ConsumerWidget {
   }
 
   Widget _backgroundWidget() {
+    if(_selectedMoviePosterURL.state !=null){
     return Container(
       height: _deviceHeight,
       width: _deviceWidth,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: NetworkImage(
-              'https://posterspy.com/wp-content/uploads/2019/09/godzillakong.jpg'),
+          image: NetworkImage(_selectedMoviePosterURL.state),
           fit: BoxFit.cover,
         ),
       ),
@@ -78,6 +87,14 @@ class MainPage extends ConsumerWidget {
             ),
           )),
     );
+    }else{
+      return Container(
+        height: _deviceHeight,
+        width: _deviceWidth,
+        color: Colors.black,
+
+      );
+    }
   }
 
   Widget _foregroundWidgets() {
@@ -180,14 +197,29 @@ class MainPage extends ConsumerWidget {
     final List<Movie> _movies = _mainPageData.movies;
 
     if (_movies.length != 0) {
-      return ListView.builder(
+      return NotificationListener(
+        onNotification: (_onScrollNotification) {
+          if(_onScrollNotification is ScrollEndNotification){
+            final before =_onScrollNotification.metrics.extentBefore;
+            final max=_onScrollNotification.metrics.maxScrollExtent;
+            if(before ==max){
+              _mainPageDataController.getMovies();
+              return true;
+            }
+            return false;
+          }
+          return false;
+        } ,
+        child: ListView.builder(
           itemCount: _movies.length,
           itemBuilder: (BuildContext _context, int _count) {
             return Padding(
               padding: EdgeInsets.symmetric(
                   vertical: _deviceHeight * 0.01, horizontal: 0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  _selectedMoviePosterURL.state =_movies[_count].posterURL();
+                },
                 child: MovieTile(
                   movie: _movies[_count],
                   height: _deviceHeight * 0.20,
@@ -195,7 +227,9 @@ class MainPage extends ConsumerWidget {
                 ),
               ),
             );
-          });
+          },
+          ),
+          );
     } else {
       return Center(
         child: CircularProgressIndicator(
