@@ -43,10 +43,10 @@ class MovieTile extends StatelessWidget {
     return Container(
       height: height,
       width: width * 0.66,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        // mainAxisSize: MainAxisSize.max,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisSize: MainAxisSize.max,
@@ -66,8 +66,11 @@ class MovieTile extends StatelessWidget {
               ),
               Text(
                 movie.rating.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 22),
-              )
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                ),
+              ),
             ],
           ),
           Container(
@@ -83,7 +86,7 @@ class MovieTile extends StatelessWidget {
               movie.description,
               maxLines: 9,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.white70, fontSize: 12),
+              style: TextStyle(color: Colors.white70, fontSize: 10),
             ),
           ),
         ],
