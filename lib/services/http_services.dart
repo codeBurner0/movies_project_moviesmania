@@ -18,8 +18,7 @@ class HTTPService {
     _base_url = _config.BASE_API_URL;
     _api_key = _config.API_KEY;
   }
-
-  Future<Object> get(String _path, {Map<String,dynamic> query} ) async {
+  Future<Object> get(String _path, {Map<String, dynamic> query}) async {
     try {
       String _url = '$_base_url$_path';
       Map<String, dynamic> _query = {

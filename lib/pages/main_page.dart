@@ -4,6 +4,8 @@ import 'dart:ui';
 // Packages
 import'package:flutter/material.dart';
 import'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movies_project_moviesmania/controllers/main_page_data_controller.dart';
+import 'package:movies_project_moviesmania/model/main_page_data.dart';
 
 //Widget
 import '../widgets/movie_tile.dart';
@@ -12,10 +14,18 @@ import '../widgets/movie_tile.dart';
 import'../model/search_category.dart';
 import '../model/movie.dart';
 
+final mainPageDataControllerProvider = StateNotifierProvider<MainPageDataController>((ref) {
+  return MainPageDataController();
+  });
+
 class MainPage extends ConsumerWidget{
  
   double _deviceHeight;
   double _deviceWidth;
+
+  MainPageDataController _mainPageDataController;
+  MainPageData _mainPageData;
+
   TextEditingController _searchTextFieldController;
 
   @override
@@ -23,6 +33,12 @@ class MainPage extends ConsumerWidget{
 
    _deviceHeight=MediaQuery.of(context).size.height;
    _deviceWidth=MediaQuery.of(context).size.width;
+
+   _mainPageDataController = watch(mainPageDataControllerProvider);
+   _mainPageData = watch(mainPageDataControllerProvider.state);
+
+
+
    _searchTextFieldController=TextEditingController();
 
     return _buildUI();
@@ -116,7 +132,8 @@ Widget _searchFieldWidget(){
 
     child:TextField(
      controller:_searchTextFieldController,
-     onSubmitted:(_input){},
+     onSubmitted:(_input) ==> 
+          _mainPageDataController.updateTextSearch(_input),
      style:TextStyle(color:Colors.white),
      decoration:InputDecoration(
        focusedBorder:_border,
@@ -134,10 +151,10 @@ Widget _searchFieldWidget(){
  Widget _categorySelectionWidget(){
     return DropdownButton(
       dropdownColor: Colors.black38,
-      value:SearchCategory.popular,
+      value:_mainPageData.searchCategory,
       icon:Icon(
       Icons.menu,color:Colors.white24,),
-      onChanged:(value){},
+      onChanged:(_value) => _value.toString().isNotEmpty ? _mainPageDataController.updateSearchCategory(_value) : null,
        items:[
           DropdownMenuItem(
           child:Text(
@@ -165,21 +182,7 @@ Widget _searchFieldWidget(){
   }
   Widget _moviesListViewWidget(){
 
-    final List <Movie> _movies = [];
-    for(var i=0; i < 20; i++){
-      _movies.add(
-        Movie(
-          name: "Moratl Kombat",
-          language: "EN",
-          isAdult: false,
-          description:
-          "Mortal Kombat is a 2021 martial arts fantasy film based on the video game franchise of the same name and a reboot of the Mortal Kombat film series.",
-          posterPath: "/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg",
-          backdropPath: "/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg" ,
-          rating: 7.8,
-          releaseDate: "2021-04-07",),
-      );
-    }
+    final List <Movie> _movies = _mainPageData.movies;
 
     if(_movies.length != 0){
       return ListView.builder(

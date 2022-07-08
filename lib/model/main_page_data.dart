@@ -16,12 +16,15 @@ class MainPageData {
         searchText='';
 
   MainPageData copyWith(
-      List<Movie> movies, int page, String searchCategory,String searchText)  {
+      {required List<Movie> movies,
+       required int page, 
+       required String searchCategory,
+       required String searchText})  {
     return MainPageData(
-        movies: movies ?? this.movies, 
-        page: page ?? this.page, 
-        searchCategory: searchCategory ?? this.searchCategory, 
-        searchText: searchText ?? this.searchText);
+        movies: movies, 
+        page: page, 
+        searchCategory: searchCategory, 
+        searchText: searchText);
   }
 
 
