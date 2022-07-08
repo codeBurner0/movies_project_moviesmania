@@ -49,13 +49,19 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          brightness: Brightness.dark, primaryColor: Color(0xFF000000)),
+
       debugShowCheckedModeBanner: false,
       title: "moviesmania",
-      theme: ThemeData(primarySwatch: Colors.blue),
+      // theme: ThemeData(primarySwatch: Colors.blue),
       home: Scaffold(
         body: Center(
           child: Container(
-            child: Image(image: AssetImage("assets/images/logo.png")),
+            child: Image(
+              image: AssetImage("assets/images/unnamed.png"),
+              height: 200,
+            ),
           ),
 
           // Avoid this thing
