@@ -59,12 +59,12 @@ class _SplashPageState extends State<SplashPage> {
         body: Center(
           child: Container(
             decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-              image: AssetImage("assets/images/exodus.gif"),
-              fit: BoxFit.cover,
+              borderRadius: BorderRadius.circular(10.0),
+              image: DecorationImage(
+                image: AssetImage("assets/images/exodus.gif"),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
             // child: Image(
             //   image:DecorationImage()
             // //  image: AssetImage("assets/images/unnamed.png"),
