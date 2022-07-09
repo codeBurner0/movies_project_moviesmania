@@ -19,16 +19,16 @@ final mainPageDataControllerProvider =
   return MainPageDataController();
 });
 
-final selectedMoviePosterURLProvider =StateProvider<String> ((ref){ 
-  final _movies =  ref.watch(mainPageDataControllerProvider.state).movies;
-  return _movies.length !=0 ? _movies[0].posterURL() : null;
+final selectedMoviePosterURLProvider = StateProvider<String>((ref) {
+  final _movies = ref.watch(mainPageDataControllerProvider.state).movies;
+  return _movies.length != 0 ? _movies[0].posterURL() : null;
 });
 
 class MainPage extends ConsumerWidget {
   double _deviceHeight;
-  double _deviceWidth; 
+  double _deviceWidth;
 
-  var _selectedMoviePosterURL;  
+  var _selectedMoviePosterURL;
 
   MainPageDataController _mainPageDataController;
   MainPageData _mainPageData;
@@ -68,31 +68,30 @@ class MainPage extends ConsumerWidget {
   }
 
   Widget _backgroundWidget() {
-    if(_selectedMoviePosterURL.state !=null){
-    return Container(
-      height: _deviceHeight,
-      width: _deviceWidth,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        image: DecorationImage(
-          image: NetworkImage(_selectedMoviePosterURL.state),
-          fit: BoxFit.cover,
+    if (_selectedMoviePosterURL.state != null) {
+      return Container(
+        height: _deviceHeight,
+        width: _deviceWidth,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          image: DecorationImage(
+            image: NetworkImage(_selectedMoviePosterURL.state),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2),
-            ),
-          )),
-    );
-    }else{
+        child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2),
+              ),
+            )),
+      );
+    } else {
       return Container(
         height: _deviceHeight,
         width: _deviceWidth,
         color: Colors.black,
-
       );
     }
   }
@@ -199,17 +198,17 @@ class MainPage extends ConsumerWidget {
     if (_movies.length != 0) {
       return NotificationListener(
         onNotification: (_onScrollNotification) {
-          if(_onScrollNotification is ScrollEndNotification){
-            final before =_onScrollNotification.metrics.extentBefore;
-            final max=_onScrollNotification.metrics.maxScrollExtent;
-            if(before ==max){
+          if (_onScrollNotification is ScrollEndNotification) {
+            final before = _onScrollNotification.metrics.extentBefore;
+            final max = _onScrollNotification.metrics.maxScrollExtent;
+            if (before == max) {
               _mainPageDataController.getMovies();
               return true;
             }
             return false;
           }
           return false;
-        } ,
+        },
         child: ListView.builder(
           itemCount: _movies.length,
           itemBuilder: (BuildContext _context, int _count) {
@@ -218,7 +217,7 @@ class MainPage extends ConsumerWidget {
                   vertical: _deviceHeight * 0.01, horizontal: 0),
               child: GestureDetector(
                 onTap: () {
-                  _selectedMoviePosterURL.state =_movies[_count].posterURL();
+                  _selectedMoviePosterURL.state = _movies[_count].posterURL();
                 },
                 child: MovieTile(
                   movie: _movies[_count],
@@ -228,8 +227,8 @@ class MainPage extends ConsumerWidget {
               ),
             );
           },
-          ),
-          );
+        ),
+      );
     } else {
       return Center(
         child: CircularProgressIndicator(

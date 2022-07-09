@@ -1,16 +1,20 @@
 //@dart=2.9
 //Package
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
 import 'package:movies_project_moviesmania/model/movie.dart';
 import 'package:movies_project_moviesmania/model/search_category.dart';
-import '../model/movie.dart';
-import 'package:movies_project_moviesmania/model/main_page_data.dart';
-import 'package:movies_project_moviesmania/services/movies_services.dart';
+//Package
+import 'dart:async';
+
+// import 'package:flickd_app/models/search_category.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 
 //Models
 import '../model/main_page_data.dart';
-import '../model/movie.dart';
+// import '../models/movie.dart';
+
+//Services
+import '../services/movies_services.dart';
 
 class MainPageDataController extends StateNotifier<MainPageData> {
   MainPageDataController([MainPageData state])

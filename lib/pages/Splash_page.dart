@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 4)).then(
+    Future.delayed(Duration(seconds: 6)).then(
       (_) => _setup(context).then(
         (_) => widget.onInitializationComplete(),
       ),
