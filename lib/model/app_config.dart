@@ -1,3 +1,4 @@
+//@dart=2.9
 // ignore_for_file: non_constant_identifier_names
 
 class AppConfig {
@@ -5,8 +6,8 @@ class AppConfig {
   final String API_KEY;
   final String BASE_IMAGE_API_URL;
   AppConfig({
-    required this.BASE_API_URL,
-    required this.BASE_IMAGE_API_URL,
-    required this.API_KEY,
+     this.BASE_API_URL,
+     this.BASE_IMAGE_API_URL,
+     this.API_KEY,
   });
 }

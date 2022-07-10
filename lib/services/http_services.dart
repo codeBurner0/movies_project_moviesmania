@@ -3,6 +3,7 @@
 //Packages
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+
 //Model
 import '../model/app_config.dart';
 
@@ -18,6 +19,7 @@ class HTTPService {
     _base_url = _config.BASE_API_URL;
     _api_key = _config.API_KEY;
   }
+
   Future<Object> get(String _path, {Map<String, dynamic> query}) async {
     try {
       String _url = '$_base_url$_path';
@@ -26,7 +28,8 @@ class HTTPService {
         'language': 'en-US',
       };
       return await dio.get(_url, queryParameters: _query);
-    } on DioError catch (e) {
+    }
+    on DioError catch (e) {
       print('Unable to get data.');
       print('DioError:$e');
       return DioError;

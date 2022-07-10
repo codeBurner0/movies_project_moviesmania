@@ -1,3 +1,4 @@
+//@dart=2.9
 //Packages
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ import '../model/app_config.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
-  const SplashPage({Key? key, required this.onInitializationComplete})
+  const SplashPage({Key key, this.onInitializationComplete})
       : super(key: key);
   @override
   State<SplashPage> createState() => _SplashPageState();

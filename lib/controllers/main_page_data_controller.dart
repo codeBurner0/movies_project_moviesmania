@@ -29,11 +29,15 @@ class MainPageDataController extends StateNotifier<MainPageData> {
       List<Movie> _movies = [];
 
       if (state.searchText.isEmpty) {
+        
         if (state.searchCategory == SearchCategory.popular) {
           _movies = await (_movieService.getPopularMovies(page: state.page));
         } else if (state.searchCategory == SearchCategory.upcoming) {
           _movies = await (_movieService.getUpcomingMovies(page: state.page));
-        } else if (state.searchCategory == SearchCategory.none) {
+        } else if (state.searchCategory == SearchCategory.top_rated) {
+          _movies = await (_movieService.getTopRatedMovies(page: state.page));
+        }
+        else if (state.searchCategory == SearchCategory.none) {
           _movies = [];
         }
       } else {

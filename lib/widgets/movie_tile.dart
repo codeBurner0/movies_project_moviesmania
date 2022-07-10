@@ -1,3 +1,4 @@
+//@dart=2.9
 // ignore_for_file: empty_constructor_bodies
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
@@ -18,10 +19,10 @@ class MovieTile extends StatelessWidget {
   final Movie movie;
 
   MovieTile(
-      {Key? key,
-      required this.movie,
-      required this.height,
-      required this.width})
+      {Key key,
+       this.movie,
+       this.height,
+       this.width})
       : super(key: key);
 
   @override
