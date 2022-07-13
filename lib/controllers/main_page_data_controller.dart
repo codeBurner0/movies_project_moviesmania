@@ -36,7 +36,9 @@ class MainPageDataController extends StateNotifier<MainPageData> {
           _movies = await (_movieService.getUpcomingMovies(page: state.page));
         } else if (state.searchCategory == SearchCategory.top_rated) {
           _movies = await (_movieService.getTopRatedMovies(page: state.page));
-        }
+         } //else if (state.searchCategory == SearchCategory.video) {
+        //   _movies = await (_movieService.getVideos(movies:state._movieData));
+        // }
         else if (state.searchCategory == SearchCategory.none) {
           _movies = [];
         }

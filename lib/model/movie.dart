@@ -14,6 +14,8 @@ class Movie{
   final String backdropPath;
   final num rating;
   final String releaseDate;
+  //final int movie_id;
+  
  Movie(
       {this.name, this.language, this.isAdult,
       this.description,this.posterPath,this.backdropPath,
@@ -30,6 +32,7 @@ class Movie{
        backdropPath:_json['backdrop_path'],
        rating:_json['vote_average'],
       releaseDate:_json["release_date"],
+     // movie_id: _json['id'],
     );
   }
   String posterURL(){

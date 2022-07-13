@@ -62,7 +62,8 @@ class _SplashPageState extends State<SplashPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               image: DecorationImage(
-                image: AssetImage("assets/images/exodus.gif"),
+                
+                image: AssetImage("assets/images/splash_screen.gif"),
                 fit: BoxFit.cover,
               ),
             ),

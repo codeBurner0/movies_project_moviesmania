@@ -5,6 +5,7 @@ import 'dart:collection';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movies_project_moviesmania/model/genre.dart';
 import 'package:movies_project_moviesmania/model/movie.dart';
 import 'package:movies_project_moviesmania/model/search_category.dart';
 //Services
@@ -64,6 +65,19 @@ class MovieService {
       return _movies;
     } else {
       throw Exception('Couldn\'t load latest movies.');
+    }
+  }
+
+    Future<List<Genre>> getGenre() async {
+    Response _response = await _http.get('/genre/movie/list');
+    if (_response.statusCode == 200) {
+      Map _data = _response.data;
+      List<Genre> _genre = _data['results'].map<Movie>((_movieData) {
+        return Movie.fromJson(_movieData);
+      }).toList();
+      return _genre;
+    } else {
+      throw Exception('Couldn\'t load video.');
     }
   }
   

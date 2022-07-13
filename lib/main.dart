@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 // ignore: deprecated_member_use
 import 'package:flutter_riverpod/all.dart';
+import 'package:movies_project_moviesmania/pages/login_page.dart';
 import 'package:riverpod/riverpod.dart';
 //Pages
 import 'pages/Splash_page.dart';
@@ -30,9 +31,12 @@ class MyApp extends StatelessWidget {
       title: 'moviesmania',
       initialRoute: 'home',
       routes: {
-        'home': (BuildContext _context) => MainPage(),
+        'home': (BuildContext _context) => LoginPage(),
       },
       theme: ThemeData(
+         
+           brightness: Brightness.dark, primaryColor: Color(0xFF000000),
+          
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
     );

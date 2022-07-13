@@ -37,8 +37,9 @@ class MainPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    _deviceHeight = MediaQuery.of(context).size.height;
+     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
+   
 
     _mainPageDataController = watch(mainPageDataControllerProvider);
     _mainPageData = watch(mainPageDataControllerProvider.state);
@@ -99,13 +100,21 @@ class MainPage extends ConsumerWidget {
 
   Widget _foregroundWidgets() {
     return Container(
-      padding: EdgeInsets.fromLTRB(0, _deviceHeight * 0.02, 0, 0),
+     // padding: EdgeInsets.fromLTRB(0, _deviceHeight * 0.02, 0, 0),
       width: _deviceWidth * 0.88,
       child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+             Padding(
+               padding: const EdgeInsets.all(10.0),
+               child: Text("MoviesMania",
+               style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color:Colors.white,
+                fontSize: 30)),
+             ),
             _topBarWidget(),
             Container(
               height: _deviceHeight * 0.83,
@@ -123,12 +132,13 @@ class MainPage extends ConsumerWidget {
         color: Colors.black54,
         borderRadius: BorderRadius.circular(20.0),
       ),
+     
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          
+         
           _searchFieldWidget(),
           _categorySelectionWidget(),
         ],
@@ -192,6 +202,13 @@ class MainPage extends ConsumerWidget {
             ),
             value: SearchCategory.top_rated,
           ),
+          //  DropdownMenuItem(
+          //   child: Text(
+          //     SearchCategory.video,
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   value: SearchCategory.video,
+          // ),
           
           DropdownMenuItem(
             child: Text(

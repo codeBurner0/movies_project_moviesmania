@@ -20,19 +20,22 @@ class HTTPService {
     _api_key = _config.API_KEY;
   }
 
-  Future<Object> get(String _path, {Map<String, dynamic> query}) async {
+  Future<Response> get(String _path, {Map<String, dynamic> query}) async {
     try {
       String _url = '$_base_url$_path';
       Map<String, dynamic> _query = {
         'api_key': _api_key,
         'language': 'en-US',
       };
+      if(query != null){
+        query.addAll(query);
+      }
       return await dio.get(_url, queryParameters: _query);
     }
     on DioError catch (e) {
       print('Unable to get data.');
       print('DioError:$e');
-      return DioError;
+      
     }
   }
 }
