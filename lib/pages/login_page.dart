@@ -61,36 +61,15 @@ class _LoginPage extends State<LoginPage> {
           )),
     ),
             
-         //   _lpbackgroungd(),
             _lpforeground(),
-           
-
           ]))),
     );
     
   }
   
-  Widget _lpbackgroungd() {
-    return Container(
-      // height: _deviceHeight,
-      // width: _deviceWidth,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        image: DecorationImage(
-          image: NetworkImage('https://media1.popsugar-assets.com/files/thumbor/8xugn8tUReUIM-P_T8bkjdhe0xc/fit-in/728xorig/filters:format_auto-!!-:strip_icc-!!-/2019/06/05/869/n/43879538/e754d6485cf81d3d31bd40.89484858_/i/Dark-Sides-Zodiac-Signs.jpg'),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2),
-            ),
-          )),
-    );
+ 
 
-  }
+  
   Widget _lpforeground() {
     return Center(
         child: Container(
