@@ -48,7 +48,7 @@ class _LoginPage extends State<LoginPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwx4x35ReHUJx7v1p27pQtw4ABOlxnVcjZVg&usqp=CAU'),
+          image: AssetImage('images/new_background.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -77,7 +77,7 @@ class _LoginPage extends State<LoginPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: NetworkImage('https://images.unsplash.com/photo-1611298036748-97f97f810a96?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
+          image: NetworkImage('https://media1.popsugar-assets.com/files/thumbor/8xugn8tUReUIM-P_T8bkjdhe0xc/fit-in/728xorig/filters:format_auto-!!-:strip_icc-!!-/2019/06/05/869/n/43879538/e754d6485cf81d3d31bd40.89484858_/i/Dark-Sides-Zodiac-Signs.jpg'),
           fit: BoxFit.cover,
         ),
       ),
