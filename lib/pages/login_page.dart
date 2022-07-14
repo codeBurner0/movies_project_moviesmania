@@ -17,21 +17,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
- // double _deviceHeight=634.3362426757812;
-  //double _deviceWidth=521.0619506835938; 
-  //  _deviceHeight = MediaQuery.of(context).size.height;
-  //   _deviceWidth = MediaQuery.of(context).size.width;
+ 
    String _emailError = null;
   var _secureText = true;
   bool isChecked=false;
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-
-  
-  // String _nameError = null;
-  // String _emailError = null;
-  // TextEditingController namecontroller = TextEditingController();
-  // TextEditingController emailcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +39,8 @@ class _LoginPage extends State<LoginPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: AssetImage('images/new_background.jpg'),
+          //image: AssetImage('images/wjpg'),
+          image:NetworkImage('https://image.shutterstock.com/image-illustration/blur-lights-abstract-background-bokeh-260nw-1537938740.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -59,7 +51,7 @@ class _LoginPage extends State<LoginPage> {
               color: Colors.black.withOpacity(0.2),
             ),
           )),
-    ),
+     ),
             
             _lpforeground(),
           ]))),
@@ -73,15 +65,25 @@ class _LoginPage extends State<LoginPage> {
   Widget _lpforeground() {
     return Center(
         child: Container(
-        //   decoration: BoxDecoration(
-        //   borderRadius:BorderRadius.circular(16.0),
-        //  // color: Colors.black12,
-        //   ),
-          height: 450,
+          height: 500,
           width: 500,          
           padding:EdgeInsets.fromLTRB(20, 50, 20, 50),
-          child: Column(
+          child: ListView(
             children: [
+              SizedBox(
+                height: 130,
+                width: 130,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: CircleAvatar(
+                  // borderRadius: BorderRadius.circular(100),
+                   child:ClipOval(child:  Image(image: AssetImage('assets/images/new_astr_logo.jpg'),),)
+                  ),
+                  ),
+                ),
+              
+
+
               TextField(
               controller: emailcontroller,
               decoration: InputDecoration(
@@ -90,7 +92,7 @@ class _LoginPage extends State<LoginPage> {
                 prefixIcon: Icon(Icons.mail,color: Colors.white),
                 hintText: "Email ID",
                 labelStyle: TextStyle(fontSize: 10, color: Colors.white),
-                fillColor: Colors.black,
+                fillColor: Colors.black45,
                 filled: true,
               ),
               keyboardType: TextInputType.emailAddress,
@@ -104,16 +106,16 @@ class _LoginPage extends State<LoginPage> {
                 prefixIcon: Icon(Icons.lock,color: Colors.white,),
                 hintText: "Password",
                 labelStyle: TextStyle(fontSize: 10, color:Colors.white),
-                fillColor: Colors.black,
+                fillColor: Colors.black45,
                 filled: true,
               ),
               obscureText: _secureText,
               // keyboardType: TextInputType.visiblePassword,
             ),
-            SizedBox( height: 30,),
+            SizedBox( height: 20,),
              CheckboxListTile(
               controlAffinity: ListTileControlAffinity.leading,
-              title: Text('Remember Me!'),
+              title: Text('Accept Terms and Condition'),
               activeColor: Colors.blue,
                       value: isChecked,
                       onChanged: (b) {
@@ -130,10 +132,10 @@ class _LoginPage extends State<LoginPage> {
               child:  ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20),
-                  primary: Colors.black,
+                  primary: Color.fromARGB(221, 6, 6, 6),
                   fixedSize: const Size(200, 20),
                 ),
-                onPressed: () {
+                onPressed:isChecked? () {
                   final password = passwordcontroller.text;
                   final email = emailcontroller.text;
                   if (password.isEmpty || email.isEmpty) {
@@ -145,7 +147,8 @@ class _LoginPage extends State<LoginPage> {
                           content: const Text("Field cannot be empty"),
                           actions: [
                             TextButton(
-                                onPressed: () {
+                                onPressed:  () {
+                                  
                                   Navigator.pop(context);
                                 },
                                 child: const Text("OK"))
@@ -159,7 +162,7 @@ class _LoginPage extends State<LoginPage> {
                       return MainPage();
                     }));
                   }
-                },
+                }:null,
                 child: const Text('Login'),
               ),
             ),

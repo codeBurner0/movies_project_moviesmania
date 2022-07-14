@@ -51,7 +51,8 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          brightness: Brightness.dark, primaryColor: Color(0xFF000000)),
+          //brightness: Brightness.dark, primaryColor: Color(0xFF000000)
+          ),
 
       debugShowCheckedModeBanner: false,
       title: "moviesmania",
@@ -61,9 +62,9 @@ class _SplashPageState extends State<SplashPage> {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              image: DecorationImage(
+              image: const DecorationImage(
                 
-                image: AssetImage("assets/images/splash_screen.gif"),
+                image: AssetImage("assets/images/astronot.gif"),
                 fit: BoxFit.cover,
               ),
             ),
